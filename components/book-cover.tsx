@@ -15,14 +15,14 @@ interface BookCoverProps {
   className?: string;
   variant?: BookCoverVariant;
   coverColor?: string;
-  coverUrl?: string;
+  coverImage?: string;
 }
 
 const BookCover = ({
   className,
   variant = "regular",
   coverColor = "#012B48",
-  coverUrl = "https://placehold.co/400x600.png",
+  coverImage = "https://placehold.co/400x600.png",
 }: BookCoverProps) => {
   return (
     <div
@@ -38,7 +38,7 @@ const BookCover = ({
         style={{ left: "12%", width: "87.5%", height: "88%" }}
       >
         <Image
-          src={coverUrl}
+          src={coverImage}
           alt="book cover"
           fill
           className="rounded-sm object-fill"
