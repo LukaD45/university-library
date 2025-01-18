@@ -2,6 +2,7 @@ import Link from "next/link";
 import BookCover from "./book-cover";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Button } from "./ui/button";
 
 const BookCard = ({
   id,
@@ -33,7 +34,9 @@ const BookCard = ({
               height={18}
               className="object-contain"
             />
+            <p className="text-light-100">11 days left to return</p>
           </div>
+          <Button className="book-btn">Download receipt</Button>
         </div>
       )}
     </Link>
