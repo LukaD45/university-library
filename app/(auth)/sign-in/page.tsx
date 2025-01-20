@@ -1,5 +1,17 @@
+"use client";
+
+import AuthForm from "@/components/auth-form";
+import { SignInSchema } from "@/lib/validations";
+
 const SingInPage = () => {
-  return <div>Sign In Form</div>;
+  return (
+    <AuthForm
+      type="sign-in"
+      schema={SignInSchema}
+      defaultValues={{ email: "", password: "" }}
+      onSubmit={() => {}}
+    />
+  );
 };
 
 export default SingInPage;
