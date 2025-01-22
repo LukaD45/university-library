@@ -1,10 +1,17 @@
 import Header from "@/components/header";
-
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 interface LayoutProps {
   children: React.ReactNode;
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = async ({ children }: LayoutProps) => {
+  const session = await auth();
+
+  if (!session) {
+    return redirect("/sign-in");
+  }
+
   return (
     <main className="root-container">
       <div className="mx-auto max-w-7xl">
