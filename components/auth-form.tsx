@@ -23,6 +23,8 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { FIELD_NAMES, FIELD_TYPES } from "@/app/constants";
 import ImageUpload from "./image-upload";
+import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 interface AuthFormProps<T extends FieldValues> {
   type: "sign-in" | "sign-up";
@@ -37,6 +39,7 @@ const AuthForm = <T extends FieldValues>({
   defaultValues,
   onSubmit,
 }: AuthFormProps<T>) => {
+  const router = useRouter();
   const isSignIn = type === "sign-in";
 
   const form: UseFormReturn<T> = useForm({
@@ -44,7 +47,24 @@ const AuthForm = <T extends FieldValues>({
     defaultValues: defaultValues as DefaultValues<T>,
   });
 
-  const handleSubmit: SubmitHandler<T> = async (data) => {};
+  const handleSubmit: SubmitHandler<T> = async (data) => {
+    const result = await onSubmit(data);
+    if (result.success) {
+      toast({
+        title: "Success",
+        description: isSignIn
+          ? "You have been signed in successfully"
+          : "You have been signed up successfully",
+      });
+      router.push("/");
+    } else {
+      toast({
+        title: `Error: ${isSignIn ? "Signing in" : "Signing up"}`,
+        description: result.error ?? "An error occurred",
+        variant: "destructive",
+      });
+    }
+  };
 
   return (
     <div className="flex flex-col gap-4">
