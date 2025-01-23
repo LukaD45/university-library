@@ -4,20 +4,20 @@ interface Book {
   author: string;
   genre: string;
   rating: number;
-  total_copies: number;
-  available_copies: number;
+  totalCopies: number;
+  availableCopies: number;
   description: string;
   color: string;
   cover: string;
   video: string;
   summary: string;
-  isLoaned: boolean;
+  isLoaned?: boolean;
 }
 
 interface AuthCredentials {
   fullName: string;
   email: string;
   password: string;
-  universityId: numbmer;
+  universityId: number;
   universityCard: string;
 }
