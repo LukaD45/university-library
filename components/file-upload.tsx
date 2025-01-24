@@ -2,6 +2,7 @@
 
 import { toast } from "@/hooks/use-toast";
 import config from "@/lib/config";
+import { cn } from "@/lib/utils";
 
 import { IKImage, ImageKitProvider, IKUpload } from "imagekitio-next";
 import Image from "next/image";
@@ -126,7 +127,7 @@ const FileUpload = ({
         className="hidden"
       />
       <button
-        className="upload-btn"
+        className={cn("upload-btn", styles.button)}
         onClick={(e) => {
           e.preventDefault();
 
@@ -143,7 +144,11 @@ const FileUpload = ({
           height={20}
           className="object-contain"
         />
-        <p className="text-base text-light-100">Upload a file</p>
+        <p className="text-base text-light-100">{placeholder}</p>
+
+        {file && (
+          <p className={cn("upload-filename", styles.text)}> {file.filePath}</p>
+        )}
 
         {file && <p className="upload-file-name">{file.filePath}</p>}
       </button>
