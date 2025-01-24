@@ -22,9 +22,10 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { FIELD_NAMES, FIELD_TYPES } from "@/app/constants";
-import ImageUpload from "./image-upload";
+import ImageUpload from "./file-upload";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
+import FileUpload from "./file-upload";
 
 interface AuthFormProps<T extends FieldValues> {
   type: "sign-in" | "sign-up";
@@ -93,7 +94,7 @@ const AuthForm = <T extends FieldValues>({
                   </FormLabel>
                   <FormControl>
                     {field.name === "universityCard" ? (
-                      <ImageUpload onFileChange={field.onChange} />
+                      <FileUpload onFileChange={field.onChange} />
                     ) : (
                       <Input
                         required

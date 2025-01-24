@@ -2,7 +2,7 @@
 
 import { toast } from "@/hooks/use-toast";
 import config from "@/lib/config";
-import ImageKit from "imagekit";
+
 import { IKImage, ImageKitProvider, IKUpload } from "imagekitio-next";
 import Image from "next/image";
 import { useRef, useState } from "react";
@@ -32,20 +32,42 @@ const authenticator = async () => {
   }
 };
 
-const ImageUpload = ({
-  onFileChange,
-}: {
+interface FileUploadProps {
   onFileChange: (filePath: string) => void;
-}) => {
+  type: string;
+  accept: string;
+  placeholder: string;
+  folder: string;
+  variant: "dark" | "light";
+}
+
+const FileUpload = ({
+  onFileChange,
+  type,
+  accept,
+  placeholder,
+  folder,
+  variant,
+}: FileUploadProps) => {
   const ikUploadRef = useRef(null);
   const [file, setFile] = useState<{
     filePath: string;
   } | null>(null);
+  const [progress, setProgress] = useState(0);
+
+  const styles = {
+    button:
+      variant === "dark"
+        ? "bg-dark-300"
+        : "bg-light-600 border-gray-100 border",
+    placeholder: variant === "dark" ? "text-light-100" : "text-slate-500",
+    text: variant === "dark" ? "text-light-100" : "text-dark-400",
+  };
 
   const onError = (error: any) => {
     toast({
-      title: "Error uploading image",
-      description: "Your image was not uploaded. Please try again.",
+      title: `${type} upload failed`,
+      description: `Your ${type} was not uploaded. Please try again.`,
       variant: "destructive",
     });
     console.log(error);
@@ -54,7 +76,7 @@ const ImageUpload = ({
     setFile(res);
     onFileChange(res.filePath);
     toast({
-      title: "Image uploaded successfully",
+      title: `${type} uploaded successfully`,
       description: `${res.filePath} uploaded successfully`,
     });
   };
@@ -107,4 +129,4 @@ const ImageUpload = ({
   );
 };
 
-export default ImageUpload;
+export default FileUpload;
