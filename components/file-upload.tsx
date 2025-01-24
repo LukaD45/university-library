@@ -4,7 +4,7 @@ import { toast } from "@/hooks/use-toast";
 import config from "@/lib/config";
 import { cn } from "@/lib/utils";
 
-import { IKImage, ImageKitProvider, IKUpload } from "imagekitio-next";
+import { IKImage, ImageKitProvider, IKUpload, IKVideo } from "imagekitio-next";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
@@ -149,18 +149,32 @@ const FileUpload = ({
         {file && (
           <p className={cn("upload-filename", styles.text)}> {file.filePath}</p>
         )}
-
-        {file && <p className="upload-file-name">{file.filePath}</p>}
       </button>
 
-      {file && (
-        <IKImage
-          path={file.filePath}
-          alt={file.filePath}
-          width={500}
-          height={300}
-        />
+      {progress > 0 && progress != 100 && (
+        <div className="w-full rounded-full bg-green-200">
+          <div
+            className="progress"
+            style={{ width: `${progress}%` }}
+          >{`${progress}%`}</div>
+        </div>
       )}
+
+      {file &&
+        (type === "image" ? (
+          <IKImage
+            path={file.filePath}
+            alt={file.filePath}
+            width={500}
+            height={300}
+          />
+        ) : type === "video" ? (
+          <IKVideo
+            path={file.filePath}
+            controls={true}
+            className="h-96 w-full rounded-xl"
+          />
+        ) : null)}
     </ImageKitProvider>
   );
 };
