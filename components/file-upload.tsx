@@ -81,6 +81,29 @@ const FileUpload = ({
     });
   };
 
+  const onValidate = (file: File) => {
+    if (type === "image") {
+      if (file.size > 20 * 1024 * 1024) {
+        toast({
+          title: "File size too large",
+          description: "Please upload an image less than 20MB in size",
+          variant: "destructive",
+        });
+        return false;
+      }
+    } else if (type === "video") {
+      if (file.size > 50 * 1024 * 1024) {
+        toast({
+          title: "File size too large",
+          description: "Please upload a video less than 50MB in size",
+          variant: "destructive",
+        });
+        return false;
+      }
+    }
+    return true;
+  };
+
   return (
     <ImageKitProvider
       publicKey={publicKey}
