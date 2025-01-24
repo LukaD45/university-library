@@ -7,6 +7,10 @@ export const config = {
       urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT!,
       privateKey: process.env.IMAGE_KIT_PRIVATE_KEY!,
     },
+    emailjs: {
+      serviceId: process.env.EMAIL_JS_SERVICE_ID!,
+      publicKey: process.env.EMAIL_JS_PUBLIC_KEY!,
+    },
     database: {
       url: process.env.DATABASE_URL!,
     },
