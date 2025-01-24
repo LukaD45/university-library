@@ -1,3 +1,4 @@
+import BookForm from "@/components/admin/forms/book-form";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -11,7 +12,7 @@ const NewBookPage = () => {
       </Button>
 
       <section className="w-full max-w-2xl">
-        <p>Book Form</p>
+        <BookForm />
       </section>
     </>
   );
