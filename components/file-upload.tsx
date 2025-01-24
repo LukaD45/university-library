@@ -111,11 +111,19 @@ const FileUpload = ({
       authenticator={authenticator}
     >
       <IKUpload
-        className="hidden"
         ref={ikUploadRef}
         onError={onError}
         onSuccess={onSuccess}
-        fileName="test-upload.png"
+        useUniqueFileName={true}
+        validateFile={onValidate}
+        onUploadStart={() => setProgress(0)}
+        onUploadProgress={({ loaded, total }) => {
+          const percent = Math.round((loaded / total) * 100);
+          setProgress(percent);
+        }}
+        folder={folder}
+        accept={accept}
+        className="hidden"
       />
       <button
         className="upload-btn"
