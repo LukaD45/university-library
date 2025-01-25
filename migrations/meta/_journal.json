@@ -8,6 +8,13 @@
       "when": 1737438312065,
       "tag": "0000_large_namorita",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1737834457610,
+      "tag": "0001_illegal_the_hunter",
+      "breakpoints": true
     }
   ]
 }
