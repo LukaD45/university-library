@@ -40,6 +40,7 @@ interface FileUploadProps {
   placeholder: string;
   folder: string;
   variant: "dark" | "light";
+  value?: string;
 }
 
 const FileUpload = ({
@@ -49,11 +50,12 @@ const FileUpload = ({
   placeholder,
   folder,
   variant,
+  value,
 }: FileUploadProps) => {
   const ikUploadRef = useRef(null);
   const [file, setFile] = useState<{
-    filePath: string;
-  } | null>(null);
+    filePath: string | null;
+  }>({ filePath: value ?? null });
   const [progress, setProgress] = useState(0);
 
   const styles = {
