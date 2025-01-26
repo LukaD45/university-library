@@ -29,6 +29,13 @@
       "when": 1737909671034,
       "tag": "0003_skinny_marten_broadcloak",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1737911263686,
+      "tag": "0004_wild_arachne",
+      "breakpoints": true
     }
   ]
 }
