@@ -12,7 +12,7 @@ export const SignInSchema = z.object({
   password: z.string().min(8),
 });
 
-export const BookSchema = z.object({
+export const bookSchema = z.object({
   title: z.string().trim().min(2).max(100),
   description: z.string().trim().min(10).max(1000),
   author: z.string().trim().min(2).max(100),
@@ -23,7 +23,7 @@ export const BookSchema = z.object({
   coverColor: z
     .string()
     .trim()
-    .regex(/^#([0-9a-fA-F]{6})$/),
+    .regex(/^#[0-9A-F]{6}$/i),
   videoUrl: z.string().nonempty(),
   summary: z.string().trim().min(10),
 });

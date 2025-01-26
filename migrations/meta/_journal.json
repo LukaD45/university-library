@@ -15,6 +15,13 @@
       "when": 1737834457610,
       "tag": "0001_illegal_the_hunter",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1737907561041,
+      "tag": "0002_watery_famine",
+      "breakpoints": true
     }
   ]
 }
